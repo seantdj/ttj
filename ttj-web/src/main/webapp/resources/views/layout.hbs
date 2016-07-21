@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>特特街，一个可以消费的网站</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/font-awesome-4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/styles/app.css">
+    <!--<script src="https://use.fontawesome.com/b2f8f9e718.js"></script>-->
+</head>
+<body>
+<div class="container">
+    <div class="row header">
+        <div class="col-md-12">
+            <a class="fl" href="/home/index"><img src="../../images/app/logo.png"></a>
+            <div class="fr">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="请输入关键词...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <ul id="nav">
+                <li>
+                    <a style="{{#equals type 'women'}}color:#FC254D !important;{{/equals}}" href="/items/summary/women">女装</a>
+                </li>
+                <li>
+                    <a style="{{#equals type 'men'}}color:#FC254D !important;{{/equals}}" href="/items/summary/men">男装</a>
+                </li>
+            </ul>
+            <ul id="cart">
+                <li>
+                    <a>会员登录</a>
+                </li>
+                <li>
+                    <a>购物车<span class="badge">14</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{{block "main"}}}
+
+    <div class="row" style="padding:20px 0; border-top: 1px solid #DFDFDF;border-bottom: 1px solid #ccc; font-family: 'Verdana','微軟正黑體';">
+        <div class="col-xs-6 col-sm-3" style="text-align: center;">
+            <dl>
+                <dt style="font-size: 16px;">新手指南</dt>
+                <dl style="padding-top: 15px;">如何注册</dl>
+                <dl style="padding-top: 15px;">如何注册</dl>
+                <dl style="padding-top: 15px;">如何注册</dl>
+            </dl>
+        </div>
+        <div class="col-xs-6 col-sm-3" style="text-align: center;">
+            <dl>
+                <dt style="font-size: 16px;">新手指南</dt>
+                <dl style="padding-top: 15px;">如何注册</dl>
+                <dl style="padding-top: 15px;">如何注册</dl>
+                <dl style="padding-top: 15px;">如何注册</dl>
+            </dl>
+        </div>
+        <div class="col-xs-6 col-sm-3" style="text-align: center;">
+            <dl>
+                <dt style="font-size: 16px;">新手指南</dt>
+                <dl style="padding-top: 15px;">如何注册</dl>
+                <dl style="padding-top: 15px;">如何注册</dl>
+                <dl style="padding-top: 15px;">如何注册</dl>
+            </dl>
+        </div>
+        <div class="col-xs-6 col-sm-3" style="text-align: center;">
+            <dl>
+                <dt style="font-size: 16px;">微信公众号</dt>
+                <dl style="padding-top: 15px;">
+                    <img width="90" height="90" src="/images/app/icon/qrcode_for_gh_0870dd51cd28_258.jpg">
+                </dl>
+            </dl>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px;"></div>
+</div>
+<script src="/scripts/vender/jquery-3.0.0.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="/scripts/vender/handlebars.js"></script>
+<script src="/scripts/app/util.js"></script>
+{{{block "privatejs"}}}
+<script>
+    var jspath = document.getElementById("selfjs-path") ? document.getElementById("selfjs-path").value : null;
+    console.log(jspath)
+    if (jspath) {
+        document.write('<script src="' + jspath + '"><\/script>');
+    } else {
+        var pn = window.location.pathname;
+        var reg = /\/.+\/[1-9,a-z,A-Z,_,-]+/g;
+        pn = pn.match(reg)[0];
+        if (pn == '/') {
+            jspath = '<script src="/scripts/app/index.js"><\/script>';
+        } else {
+            jspath = '<script src="/scripts/app' + pn + '.js"><\/script>';
+        }
+        if (jspath) {
+            document.write(jspath);
+        } else {
+            console.info('can not find js');
+        }
+    }
+</script>
+</body>
+</html>

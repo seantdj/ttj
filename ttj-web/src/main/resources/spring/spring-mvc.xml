@@ -1,0 +1,56 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- Open controller annotation support -->
+    <context:component-scan
+            base-package="com.sean.ttj.controllers"
+            use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <aop:aspectj-autoproxy/>
+
+    <mvc:annotation-driven/>
+
+    <mvc:view-controller path="/" view-name="redirect:home/index"/>
+
+    <!--pc端静态资源映射-->
+    <mvc:resources mapping="/images/**" location="/resources/images/"/>
+    <mvc:resources mapping="/search/image/**" location="/resources/images/"/>
+    <mvc:resources mapping="/scripts/**" location="/resources/scripts/"/>
+    <mvc:resources mapping="/styles/**" location="/resources/styles/"/>
+
+    <mvc:default-servlet-handler/>
+
+    <!-- 拦截器注册 -->
+    <!--<mvc:interceptors>
+
+    </mvc:interceptors>-->
+    <!--
+    <mvc:resources mapping="/assets/**" location="/assets/" cache-period="86400"/>
+	-->
+    <import resource="spring-handlebars.xml"/>
+
+    <!--<bean class="com.ctzj.isale.web.exception.ExceptionHandler">
+        <property name="illegalParamUrl" value="/user/illegalParam"></property>
+    </bean>-->
+    <!-- 支持上传文件 sean-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--1024*200即200k-->
+        <property name="maxUploadSize" value="204800"/>
+        <!--resolveLazily属性启用是为了推迟文件解析，以便在UploadAction 中捕获文件大小异常-->
+        <property name="resolveLazily" value="true"/>
+    </bean>
+
+</beans>

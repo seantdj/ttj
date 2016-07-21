@@ -1,0 +1,380 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+}
+
+.header{
+    margin-top: 20px;
+}
+
+.header #nav{
+    border-bottom: 0 solid #e6e6e6;
+    display: inline-block;
+    height: 28px;
+    /*left: 160px;*/
+    position: absolute;
+    text-align: center;
+    top: 67px;
+}
+.header li{
+    width:116px;
+    text-align: center;
+    list-style: outside none none;
+    float: left;
+    border-right: 1px solid #ccc;
+}
+
+.header ul :last-child{
+    border-right: none;
+}
+
+.header li a{
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.header #nav a{
+    color: #706e6c !important;
+    text-decoration: none;
+}
+
+.header #nav a:hover{
+    color: #875123 !important;
+}
+
+.header #cart a{
+    color: #875123 !important;
+}
+
+.header #cart li:last-child{
+    background: url("../images/app/icon/ShoppingCart.gif") no-repeat 0 -1px;
+    min-width: 116px;
+}
+
+.header #cart{
+    display: inline;
+    list-style-position: inside;
+    margin-left: 0;
+    padding-left: 10px;
+    position: absolute;
+    top: 67px;
+    right: 10px;
+}
+
+.nav-sidebar > li {
+    background-color: #FFFF00;
+    border-top: 1px solid #E64B4B;
+    color: #875123;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.nav-sidebar > li:hover {
+    color: #BA8334;
+}
+.nav-sidebar > li:first-child {
+    border-top: medium none;
+}
+.nav-sidebar > li.active {
+    background-color: #FFFF00;
+}
+.nav-sidebar > li > div {
+    cursor: pointer;
+    padding: 10px 40px 10px 10px;
+    position: relative;
+}
+.side-bar {
+    padding-left: 15px;
+}
+.content-title {
+    text-transform: none;
+}
+.content-body, .content-body p {
+    font-size: 13px;
+}
+.side-bar .content {
+    border-top: 1px dotted #bbb;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.side-bar .content:first-child {
+    border-top: medium none;
+    padding-top: 0;
+}
+.side-bar .content:last-child {
+    padding-bottom: 40px;
+}
+.toggle {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.active > .toggle::after {
+    content: "\f107";
+    font-family: "FontAwesome";
+}
+.toggle::after {
+    content: "\f105";
+    font-family: "FontAwesome";
+}
+.nav-sidebar > li > ul {
+}
+.nav-sidebar > li > ul {
+    list-style: outside none none;
+    margin: 0;
+}
+.nav-sidebar > li > ul > li {
+    line-height: 1;
+    padding: 10px 20px;
+    position: relative;
+    text-transform: none;
+}
+.nav-sidebar > li > ul > li.new-demo::before {
+    background: #6b6fd0 none repeat scroll 0 0;
+    color: #eee;
+    content: "New";
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 5px;
+    text-transform: uppercase;
+}
+.nav-sidebar > li > ul > li:hover {
+    background: #E64B4B none repeat scroll 0 0;
+}
+.nav-sidebar > li > ul > li.active {
+    background: #F6C0C0 none repeat scroll 0 0;
+    position: relative;
+}
+.nav-sidebar > li.active > ul > li.active::after {
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #eee;
+    border-top: 10px solid transparent;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 0;
+    top: 7px;
+    width: 0;
+    z-index: 1;
+}
+.sidebar-container .sidebar-wrapper .nav-sidebar > li.active > ul > li.active::after {
+    border-right: 10px solid #fff;
+}
+.nav-sidebar > li > ul > li > a {
+    color: #865802;
+    font-size: 13px;
+    font-weight: 500;
+}
+.nav-sidebar > li.active > ul > li > a:focus, .nav-sidebar > li.active > ul > li > a:hover {
+    color: #90ef7f;
+    text-decoration: none;
+}
+.nav-sidebar > li.active > ul > li.active > a {
+    color: #EA4747;
+}
+.sidebar-wrapper {
+    position: relative;
+    z-index: 0;
+}
+.sidebar {
+    background-color: #FFFF00;
+    z-index: 2;
+}
+.sidebar-eq {
+    z-index: 1;
+}
+.sidebar-fill {
+    background-color: #FFFF00;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}
+.sidebar-eq-fill {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+}
+.sidebar-eq .item-page {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.sidebar-eq .item-page h1 {
+    background-color: transparent;
+    color: #333;
+    font-size: 2em;
+    font-weight: 300;
+    margin: 0.67em 0;
+    padding: 0;
+    text-align: left;
+}
+.sidebar-eq .item-page h2 {
+    border-bottom: 2px solid #f5f5f5;
+    color: #777;
+    font-size: 1.2em;
+    margin-top: 1.5em;
+    padding-bottom: 0.5em;
+}
+.sidebar-eq .item-page .article-info {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar-wrapper {
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+    }
+    .sidebar-wrapper .sidebar {
+        height: 100%;
+        left: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: absolute;
+        top: 0;
+        transition: all 0.5s ease 0s;
+        visibility: hidden;
+        z-index: 9;
+    }
+    .sidebar-wrapper.toggled .sidebar {
+        transition: transform 0.5s ease 0s;
+        visibility: visible;
+    }
+    .toggled .nav-sidebar > li.active > ul > li.active::after {
+        display: none;
+    }
+    .sidebar-wrapper .sidebar-eq {
+        background-color: white;
+        left: 0;
+        /*padding-top: 42px;*/
+        position: relative;
+        transition: transform 0.5s ease 0s;
+        z-index: 10;
+    }
+    .sidebar-wrapper.toggled .sidebar-eq {
+        transform: translate3d(75%, 0px, 0px);
+    }
+    .sidebar-wrapper.toggled .sidebar-eq::after {
+        height: 100%;
+        opacity: 1;
+        transition: opacity 0.5s ease 0s;
+        width: 100%;
+    }
+    .sidebar-wrapper .sidebar-eq::after {
+        background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
+        content: "";
+        height: 0;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: opacity 0.5s ease 0s, width 0.1s ease 0.5s, height 0.1s ease 0.5s;
+        width: 0;
+    }
+    #sidebar-toggle {
+        background-color: #FFFF00;
+        border-radius: 0;
+        color: white;
+        cursor: pointer;
+        left: 0;
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        visibility: visible;
+        z-index: 100;
+    }
+    .sidebar-eq > #sidebar-toggle {
+        right: 0;
+    }
+    #sidebar-toggle::before {
+        content: "更多...";
+    }
+    .toggled #sidebar-toggle::before {
+        content: "隐藏";
+    }
+    .item-page .container .row h2:first-child {
+        margin-top: 1em;
+    }
+    #menu .navbar-default .navbar-nav > .open > a, #menu .navbar-default .navbar-nav > .open > a:hover, #menu .navbar-default .navbar-nav > .open > a:focus {
+        background-color: #56566c;
+    }
+    #employees-container .card .card-image {
+        height: 150px;
+    }
+    #employees-container .card {
+        min-height: 360px;
+    }
+    .side-bar {
+        padding-left: 0;
+    }
+    .item-page #contact-email .container .row h2 {
+        margin: 1em 0;
+    }
+    .page-banner, .item-page > h1 {
+        padding: 40px 20px;
+    }
+    #about-us #company-container img {
+        margin-bottom: 0;
+    }
+    .item-page .container .row h2:first-child {
+        margin-top: 1em;
+    }
+    #employees-container .card.col-sm-4:nth-child(2n) {
+        clear: both;
+    }
+}
+#small-switcher {
+    background-color: #F6C0C0;
+    height: 45px;
+    margin: 0 -15px;
+    padding: 10px;
+}
+#sidebar-close {
+    display: none;
+}
+#view-menu, .toggled #sidebar-close {
+    display: block;
+}
+.toggled #view-menu{
+    display: none;
+}
+#sidebar-close, #view-menu {
+    background-color: #f6c0c0;
+    border-radius: 0;
+    color: #fff;
+    cursor: pointer;
+    left: 0;
+    padding: 10px;
+    position: relative;
+    top: -8px;
+    z-index: 100;
+}
+#small-switcher .btn-default {
+    /*background-color: #90ef7f;*/
+    border: 0 none;
+    border-radius: 2px;
+    color: black;
+    font-size: 15px;
+    font-family:"Roboto",​sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    max-width:200px;
+}
