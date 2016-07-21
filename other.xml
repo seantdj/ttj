@@ -1,0 +1,9 @@
+<application>
+  <component name="RefactoringSettings">
+    <option name="MOVE_PREVIEW_USAGES" value="false" />
+  </component>
+  <component name="WebServicesPluginSettings" SelectedPlatform="Apache Axis">
+    <StubPackage>securityService</StubPackage>
+    <StubUrl>http://sec.app.swirebev.com/WebServices4.0/SecurityService.asmx?wsdl</StubUrl>
+  </component>
+</application>
