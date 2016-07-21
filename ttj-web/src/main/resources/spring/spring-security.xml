@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <http pattern="/home/login" security="none"/>
+    <http pattern="/home/index" security="none"/>
+    <http pattern="/items/**" security="none"/>
+    <http pattern="/styles/**" security="none"/>
+    <http pattern="/scripts/**" security="none"/>
+    <http pattern="/images/**" security="none"/>
+
+    <http use-expressions="true" entry-point-ref="authenticationProcessingFilterEntryPoint">
+        <intercept-url pattern="/**" access="isAuthenticated()" />
+
+        <!--<session-management>
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" expired-url="/home/login"/>
+        </session-management>-->
+        <session-management session-authentication-strategy-ref="compositeSessionAuthenticationStrategy"/>
+
+        <custom-filter before="SECURITY_CONTEXT_FILTER" ref="securityContextPersistenceFilter"/>
+        <custom-filter position="CONCURRENT_SESSION_FILTER" ref="concurrentSessionFilter"/>
+        <custom-filter before="LOGOUT_FILTER" ref="requestLogoutFilter"/>
+        <custom-filter position="FORM_LOGIN_FILTER" ref="myUserAuthenticationFilter"/>
+        <csrf token-repository-ref="tokenRepository"/>
+    </http>
+
+    <beans:bean id="authenticationProcessingFilterEntryPoint"
+                class="com.sean.ttj.security.provider.MyLoginUrlAuthenticationEntryPoint">
+        <beans:constructor-arg index="0" value="/home/login"/>
+        <beans:constructor-arg index="1" value="/home/timeout"/>
+    </beans:bean>
+
+    <beans:bean id="compositeSessionAuthenticationStrategy"
+                class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy">
+        <beans:constructor-arg>
+            <beans:list>
+                <beans:ref bean="registerSessionAuthenticationStrategy"/>
+                <beans:ref bean="concurrentSessionControlStrategy"/>
+            </beans:list>
+        </beans:constructor-arg>
+    </beans:bean>
+
+    <beans:bean id="registerSessionAuthenticationStrategy"
+                class="org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy">
+        <beans:constructor-arg ref="sessionRegistry"/>
+    </beans:bean>
+
+    <beans:bean id="concurrentSessionControlStrategy"
+                class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">
+        <beans:constructor-arg ref="sessionRegistry"/>
+        <beans:property name="exceptionIfMaximumExceeded" value="false"/>
+        <beans:property name="maximumSessions" value="1"/>
+    </beans:bean>
+
+    <beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl"></beans:bean>
+    <beans:bean id="securityContextPersistenceFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+    </beans:bean>
+    <beans:bean id="concurrentSessionFilter" class="org.springframework.security.web.session.ConcurrentSessionFilter">
+        <beans:constructor-arg name="sessionRegistry" ref="sessionRegistry"/>
+        <beans:constructor-arg name="expiredUrl" value="/home/login"/>
+    </beans:bean>
+    <beans:bean id="requestLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+        <beans:constructor-arg value="/home/login"/>
+        <beans:constructor-arg>
+            <beans:list>
+                <beans:bean class="org.springframework.security.web.authentication.logout.CookieClearingLogoutHandler">
+                    <beans:constructor-arg>
+                        <beans:list>
+                            <beans:value>JSESSIONID</beans:value>
+                            <beans:value>u_info</beans:value>
+                        </beans:list>
+                    </beans:constructor-arg>
+                </beans:bean>
+                <beans:bean id="securityContextLogoutHandler" class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+            </beans:list>
+        </beans:constructor-arg>
+        <beans:property name="filterProcessesUrl" value="/home/sign-out"/>
+    </beans:bean>
+
+    <beans:bean id="myUserAuthenticationFilter"
+                class="com.sean.ttj.security.filter.MyUserAuthenticationFilter">
+        <beans:constructor-arg value="/doLogin"/>
+        <beans:property name="authenticationManager" ref="authenticationManager"/>
+        <beans:property name="authenticationSuccessHandler" ref="authenticationSuccessHandler"/>
+        <beans:property name="authenticationFailureHandler" ref="authenticationFailureHandler"/>
+        <!--<beans:property name="sessionAuthenticationStrategy" ref="concurrentSessionControlStrategy"/>-->
+        <beans:property name="sessionAuthenticationStrategy" ref="compositeSessionAuthenticationStrategy"/>
+    </beans:bean>
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider ref="authenticationProvider"/>
+    </authentication-manager>
+
+    <beans:bean id="authenticationProvider" class="com.sean.ttj.security.provider.MyAuthenticationProvider">
+        <beans:property name="hideUserNotFoundExceptions" value="false" />
+        <!--<beans:property name="forcePrincipalAsString" value="true"/>-->
+    </beans:bean>
+
+    <beans:bean id="authenticationSuccessHandler" class="com.sean.ttj.security.handler.MyAuthenticationSuccessHandler">
+        <beans:property name="defaultTargetUrl" value="/home/authenticationSuccess"/>
+    </beans:bean>
+
+    <beans:bean id="authenticationFailureHandler"
+                class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+        <beans:property name="useForward" value="true"/>
+        <beans:property name="defaultFailureUrl" value="/home/authenticationFailure"/>
+    </beans:bean>
+
+    <beans:bean id="tokenRepository"
+            class="org.springframework.security.web.csrf.CookieCsrfTokenRepository">
+        <beans:property name="cookieHttpOnly" value="false"/>
+    </beans:bean>
+</beans:beans>

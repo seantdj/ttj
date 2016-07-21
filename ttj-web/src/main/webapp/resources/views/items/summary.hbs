@@ -1,0 +1,109 @@
+{{#partial "main"}}
+    <input type="hidden" id="selfjs-path" value="/scripts/app/items/summary.js">
+    <div class="sidebar-wrapper" id="wrap" style="margin-top: 30px;">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-9 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active">
+                    <div class="active"><span>上装</span><icon class="toggle"></icon></div>
+                    <ul style="display: block;">
+                        <li class="active">
+                            <a href="http://www.highcharts.com/demo/line-basic/sand-signika">
+                                衬衣
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.highcharts.com/demo/line-ajax/sand-signika">
+                                T恤
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.highcharts.com/demo/line-labels/sand-signika">
+                                外套
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <div class=""><span>下装</span><icon class="toggle"></icon></div>
+                    <ul style="display: none;">
+                        <li class="">
+                            <a href="http://www.highcharts.com/demo/area-basic/sand-signika">
+                                裤装
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.highcharts.com/demo/area-negative/sand-signika">
+                                裙装
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-9 sidebar-fill"></div>
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 sidebar-eq demo">
+            <div class="visible-xs" id="small-switcher">
+                <a class="btn-default" id="sidebar-close">
+                    <i class="fa fa-chevron-left"></i>
+                    隐藏
+                </a>
+                <a onclick="" class="btn-default" id="view-menu">
+                    更多...
+                    <i class="fa fa-chevron-right"></i>
+                </a>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <div class="thumbnail">
+                        <a href="#"><img src="/images/show/items/25453_L_02_s.jpg" alt="女装"></a>
+                        <div class="caption">
+                            <h3>Thumbnail label</h3>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. </p>
+                            <p style="text-align: right;">
+                                <a href="javascript:void(0);" class="btn btn-danger" role="button">
+                                    加入<span class="glyphicon glyphicon-shopping-cart"></span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <div class="thumbnail">
+                        <a href="#"><img src="/images/show/items/25453_L_02_s.jpg" alt="女装"></a>
+                        <div class="caption">
+                            <h3>Thumbnail label</h3>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. </p>
+                            <p style="text-align: right;">
+                                <a href="javascript:void(0);" class="btn btn-danger" role="button">
+                                    加入<span class="glyphicon glyphicon-shopping-cart"></span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <div class="thumbnail">
+                        <a href="#"><img src="/images/show/items/25453_L_02_s.jpg" alt="女装"></a>
+                        <div class="caption">
+                            <h3>Thumbnail label</h3>
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. </p>
+                            <p style="text-align: right;">
+                                <a href="javascript:void(0);" class="btn btn-danger" role="button">
+                                    加入<span class="glyphicon glyphicon-shopping-cart"></span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 sidebar-eq-fill"></div>
+        <div class="clearfix"></div>
+    </div>
+{{/partial}}
+{{#partial "privatejs"}}
+<script type="text/javascript" src="/scripts/app/items/catalog.js"></script>
+{{/partial}}
+{{> layout}}
